@@ -73,7 +73,6 @@ brushes[#brushes+1] = {{img=3,17,8},{img=1,16,8},{img=3,14,7},{img=2,14,8},{img=
 -- rotation glitch brush
     brushes[#brushes+1] = {{img=3,-1,2},{img=1,1,1},{img=2,2,2},{img=1,4,2},{img=1,5,1},{img=2,3,1},{img=3,6,1},{img=3,8,1},{img=2,8,0},{img=2,6,0}}
 shapes.current = brushes[brushes.i]
-shapes.palette = 1; shapes.maxpalette = 11
 
 local mox,moy = 0,0
 local trib = 18*3
@@ -271,12 +270,12 @@ function shapes.wait(dt)
         print(save)
     end
     if tapped('p') then
-        shapes.palette = shapes.palette+1
-        if shapes.palette>shapes.maxpalette then 
-            shapes.palette = 0
+        palette.i = palette.i+1
+        if palette.i > #palette then 
+            palette.i = 0
             asset.pieces[1] = asset.piece1
             asset.pieces[2] = asset.piece2
-        elseif shapes.palette == 1 then
+        elseif palette.i == 1 then
             asset.pieces[1] = asset.piece1b
             asset.pieces[2] = asset.piece2b
         end
@@ -367,11 +366,7 @@ function shapes.scrncoord(gx,gy)
 end
 
 function shapes.griddraw()
-    --fg(0.65,0.65,0.85,1)
-    if shapes.palette==0 then fg(0.85,0.85,0.75,1)
-    elseif shapes.palette==9 then fg(0.89-0.08,0.92-0.08,0.89-0.08,1)
-    elseif shapes.palette==10 then fg(0.96-0.06,0.81-0.06,0.81-0.06,1)
-    else fg(0.8,0.8,0.7,1) end
+    fg(palette.grid())
     --[[local trib = 18*2
     local trigap = 7.8
     for tx=0,SW,trib*2-trib/trigap do
@@ -400,39 +395,18 @@ function shapes.piecedraw()
     for i,pc in ipairs(shapes) do
         if shapes.history and i>shapes.history then break end
         if shapes.anim and (i*0.08+shapes.at*0.024)%4<1.2 then goto continue end
-        if shapes.palette==0 then fg(1,1,1,1) end
-        if shapes.palette==1 then fg(0.7+0.1,0.4+0.1,0.4+0.1,1) end
-        if shapes.palette==2 then fg((0.7+0.1+pc[1]*0.061)%1,(0.4+0.1+pc[2]*0.061)%1,0.4+0.1,1) end
-        if shapes.palette==3 then fg((0.7+0.1+i*0.061)%1,0.4+0.1,(0.4+0.1+i*0.061)%1,1) end
-        if shapes.palette==4 then fg((0.7+0.1+(i*0.14+t*0.14)*0.061)%1,0.4+0.1,0.4+0.1,1) end
-        if shapes.palette==5 then fg(0.7+0.1-pc.img*0.1,0.4+0.1+pc.img*0.2,0.4+0.1-pc.img*0.06,1) end
-        if shapes.palette==6 then fg(0.4+0.1,0.7+0.1,0.7+0.1,1) end
-        if shapes.palette==7 then fg(0.7+0.1,0.4+0.1,0.7+0.1,1) end
-        if shapes.palette==8 then fg(0.85+0.1,0.75+0.1,0.35+0.1,1) end
-        if shapes.palette==9 then 
-            if pc.img==1 then fg(1,1,1,1) end
-            if pc.img==2 then fg(1,0.5,0.6,1) end
-            if pc.img==3 then fg(0.6,1,0.5,1) end
-        end
-        if shapes.palette==10 then 
-            if pc.img==2 then fg(1,1,1,1) end
-            if pc.img==3 then fg(1,0.5,0.6,1) end
-            if pc.img==1 then fg(0.6,1,0.5,1) end
-        end
-        if shapes.palette==11 then 
-            if pc.img==3 then fg(1,1,1,1) end
-            if pc.img==1 then fg(1,0.5,0.6,1) end
-            if pc.img==2 then fg(0.6+0.12,1-0.12,0.5+0.12,1) end
-        end
-        if pc.sel then fg(0.3,0.9,1,1) end--fg(0.6,0.9,0.6,1) end
+        
+        fg(palette[palette.i]({piece=pc,i=i,t=t}))
+        
+        if pc.sel then fg(palette.sel()) end
         if shapes.brush then
             local gx2,gy2 = math.floor(mox/(trib/2)),
                             math.floor(moy/(trib*sin(2*pi/3)))
             if shapes.collide(pc,gx2,gy2) then
                 fg(1,1,1,1)
-                if (shapes.palette==9  and pc.img==1) or
-                   (shapes.palette==10 and pc.img==2) or
-                   (shapes.palette==11 and pc.img==3) then
+                if (palette.i==9  and pc.img==1) or
+                   (palette.i==10 and pc.img==2) or
+                   (palette.i==11 and pc.img==3) then
                     fg(0.8,0.8,1,1)
                 end
             end
@@ -458,9 +432,9 @@ function shapes.piecedraw()
         -- show snapped projection
             --fg(0.3,0.9,1,1)
             fg(1,1,1,1)
-            if (shapes.palette==9  and pc.img==1) or
-               (shapes.palette==10 and pc.img==2) or
-               (shapes.palette==11 and pc.img==3) then
+            if (palette.i==9  and pc.img==1) or
+               (palette.i==10 and pc.img==2) or
+               (palette.i==11 and pc.img==3) then
                 fg(0.8,0.8,1,1)
             end
             if t%56<42 then lg.draw(asset.pieces[pc.img],shapes.scrncoord(gx,gy)) end

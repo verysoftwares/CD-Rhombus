@@ -39,6 +39,7 @@ lg.setDefaultFilter('nearest')
 lg.setLineWidth(1)
 
 require 'shapes'
+require 'palette'
 
 system.follow('update',shapes.place)
 system.follow('update',shapes.wait)
@@ -61,14 +62,7 @@ function love.draw()
     -- render moving parts of project to main canvas.
 
         lg.setCanvas(asset.maincanvas)
-            if shapes.palette==0 then
-                bg(1.0,0.95,0.5,1.0)
-            elseif shapes.palette==9 then
-                bg(0.96,0.96,0.96,1.0)
-            elseif shapes.palette==10 then
-                bg(0.91,0.96,0.91,1.0)
-            else bg(0.95,0.89,0.72,1.0) end
-            --bg(0.25,0.19,0.12,1.0)
+            bg(palette.bg())
             fg(1,1,1,1)
             for i,draw_fn in ipairs(system.draw) do
                 draw_fn()
