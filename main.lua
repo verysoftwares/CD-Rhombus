@@ -5,15 +5,15 @@ system = {update={},draw={}}
 
 -- used to start/finish an every-frame update or draw function
     function system.follow(mode,update_fn,index)
+        if system.find(mode,update_fn) then return end
         index = index or #system[mode]+1
         table.insert(system[mode],index,update_fn)
     end
 
     function system.cease(mode,update_fn)
-        for i=#system[mode],1,-1 do
-            local v = system[mode][i]
-            if v==update_fn then table.remove(system[mode],i) end
-        end
+        local i = system.find(mode,update_fn)
+        if not i then return end
+        table.remove(system[mode],i)
     end
 
     function system.find(mode,update_fn)
