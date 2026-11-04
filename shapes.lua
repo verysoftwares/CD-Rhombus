@@ -275,17 +275,6 @@ function shapes.wait(dt)
         save = save..'}'
         print(save)
     end
-    if tapped('p') then
-        palette.i = palette.i+1
-        if palette.i > #palette then 
-            palette.i = 0
-            asset.pieces[1] = asset.piece1
-            asset.pieces[2] = asset.piece2
-        elseif palette.i == 1 then
-            asset.pieces[1] = asset.piece1b
-            asset.pieces[2] = asset.piece2b
-        end
-    end
     if tapped('i') then
         shapes.anim = not shapes.anim
         shapes.at = shapes.at or 0

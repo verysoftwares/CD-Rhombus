@@ -39,12 +39,12 @@ lg.setDefaultFilter('nearest')
 lg.setLineWidth(1)
 
 require 'shapes'
+    system.follow('update',shapes.place)
+    system.follow('update',shapes.wait)
+    system.follow('draw',shapes.griddraw)
+    system.follow('draw',shapes.piecedraw)
 require 'palette'
-
-system.follow('update',shapes.place)
-system.follow('update',shapes.wait)
-system.follow('draw',shapes.griddraw)
-system.follow('draw',shapes.piecedraw)
+    system.follow('update',palette.cycle)
 
 function love.update(dt)
     -- global update functions are refreshed every frame,
