@@ -45,6 +45,9 @@ require 'shapes'
     system.follow('draw',shapes.piecedraw)
 require 'palette'
     system.follow('update',palette.cycle)
+require 'view'
+    system.follow('update',view.wait)
+    system.follow('draw',view.showscreen)
 
 function love.update(dt)
     -- global update functions are refreshed every frame,

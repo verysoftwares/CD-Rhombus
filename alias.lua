@@ -21,3 +21,4 @@
     rect    = function(mode,x,y,w,h) lg.rectangle(mode,floor(x),floor(y),floor(w),floor(h)) end
     circ    = lg.circle
     random  = love.math.random
+    lfs     = love.filesystem
