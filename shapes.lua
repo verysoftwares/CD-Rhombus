@@ -267,7 +267,7 @@ function shapes.wait(dt)
         end
     end
     if tapped('b') then
-        local save = '{'
+        local save = 'brushes[#brushes+1] = {'
         for i,pc in ipairs(shapes.current) do
             save=save..string.format('{img=%d,%d,%d},',pc.img,pc[1],pc[2])
         end
