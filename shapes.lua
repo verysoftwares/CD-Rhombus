@@ -409,12 +409,7 @@ function shapes.piecedraw()
             local gx2,gy2 = math.floor(mox/(trib/2)),
                             math.floor(moy/(trib*sin(2*pi/3)))
             if shapes.collide(pc,gx2,gy2) then
-                fg(1,1,1,1)
-                if (palette.i==9  and pc.img==1) or
-                   (palette.i==10 and pc.img==2) or
-                   (palette.i==11 and pc.img==3) then
-                    fg(0.8,0.8,1,1)
-                end
+                fg(palette.hover({piece=pc}))
             end
         end
         --::continue::
@@ -437,12 +432,7 @@ function shapes.piecedraw()
 
         -- show snapped projection
             --fg(0.3,0.9,1,1)
-            fg(1,1,1,1)
-            if (palette.i==9  and pc.img==1) or
-               (palette.i==10 and pc.img==2) or
-               (palette.i==11 and pc.img==3) then
-                fg(0.8,0.8,1,1)
-            end
+            fg(palette.hover({piece=pc}))
             if t%56<42 then lg.draw(asset.pieces[pc.img],shapes.scrncoord(gx,gy)) end
 
         -- flicker current shape at mouse pos

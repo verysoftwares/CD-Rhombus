@@ -38,4 +38,12 @@ palette = {i=1,
         end
         return 0.95,0.89,0.72,1.0
     end,
+    hover = function(info)
+        if (palette.i==9  and info.piece.img==1) or
+           (palette.i==10 and info.piece.img==2) or
+           (palette.i==11 and info.piece.img==3) then
+            return 0.8,0.8,1,1
+        end
+        return 1,1,1,1
+    end,
 }
