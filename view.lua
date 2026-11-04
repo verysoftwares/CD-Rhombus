@@ -13,7 +13,7 @@ function view.loadscreen()
     end
     view.imgname = view.allimg[random(#view.allimg)]
     view.img = lg.newImage(view.imgname)
-    view.imgname = 'Sommitelma '..string.sub(view.imgname,string.find(view.imgname,'-')+1,#view.imgname-4)
+    view.imgname = 'Sommitelma '..string.sub(view.imgname,(string.find(view.imgname,'-') or -1)+1,#view.imgname-4)
     print(view.imgname)
 end
 
