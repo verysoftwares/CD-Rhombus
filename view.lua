@@ -18,7 +18,13 @@ function view.loadscreen()
 end
 
 function view.wait()
-    if tapped('tab') then view.loadscreen() end
+    if tapped('tab') then 
+        if not (press('lshift') or press('rshift')) then
+            view.loadscreen()
+        else
+            view.img = nil; view.imgname = nil
+        end
+    end
 end
 
 function view.showscreen()
