@@ -21,14 +21,18 @@ function view.wait()
     if tapped('tab') then 
         if not (press('lshift') or press('rshift')) then
             view.loadscreen()
+            if not system.find('draw',view.showscreen) then
+                system.follow('draw',view.showscreen)
+            end
         else
-            view.img = nil; view.imgname = nil
+            if system.find('draw',view.showscreen) then
+                system.cease('draw',view.showscreen)
+            end
         end
     end
 end
 
 function view.showscreen()
-    if not view.img then return end
     fg(1,1,1,1)
     lg.draw(view.img,-1,-31)
     fg(0.7,0.4,0.4,1)
