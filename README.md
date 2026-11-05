@@ -21,7 +21,7 @@ Now that you have a custom brush, you can try rotating it in 60 degree increment
 # Useful commands
 
 [P] = cycle palette  
-[G] = toggle grid on/off  
+[G] = toggle grid visible/hidden  
 [C] = clear grid of pieces  
 [F11] = toggle fullscreen  
 [H] = animate history of grid  
