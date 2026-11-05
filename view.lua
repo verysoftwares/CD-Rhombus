@@ -3,11 +3,15 @@ view = {}
 function view.loadscreen()
     if not view.allimg then
         view.allimg = {}
-        local dirs = lfs.getDirectoryItems('document')
-        for i,dir in ipairs(dirs) do
-            local imgs = lfs.getDirectoryItems('document/'..dir)
-            for j,img in ipairs(imgs) do
-                table.insert(view.allimg,'document/'..dir..'/'..img)
+        local content = lfs.getDirectoryItems('document')
+        for i,item in ipairs(content) do
+            if lfs.getInfo('document/'..item).type=='directory' then
+                local imgs = lfs.getDirectoryItems('document/'..item)
+                for j,img in ipairs(imgs) do
+                    table.insert(view.allimg,'document/'..item..'/'..img)
+                end
+            else
+                table.insert(view.allimg,'document/'..item)
             end
         end
     end
