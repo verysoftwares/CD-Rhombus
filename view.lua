@@ -26,13 +26,9 @@ function view.wait()
     if tapped('tab') then 
         if not (press('lshift') or press('rshift')) then
             view.loadscreen()
-            if not system.find('draw',view.showscreen) then
-                system.follow('draw',view.showscreen)
-            end
+            system.follow('draw',view.showscreen)
         else
-            if system.find('draw',view.showscreen) then
-                system.cease('draw',view.showscreen)
-            end
+            system.cease('draw',view.showscreen)
         end
     end
 end
