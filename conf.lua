@@ -1,7 +1,7 @@
 SW,SH = 1280,960-24--720-24
 
 function love.conf(t)
-    t.window.title = 'CD-Rhombus by verysoftwares'    -- The window title (string)
+    t.window.title = 'CD-Rhombus by Leonard Somero'    -- The window title (string)
     t.window.icon = nil                 -- Filepath to an image to use as the window's icon (string)
     t.window.width = SW                 -- The window width (number)
     t.window.height = SH                -- The window height (number)
