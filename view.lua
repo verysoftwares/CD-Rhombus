@@ -11,8 +11,10 @@ function view.loadscreen()
             end
         end
     end
+    
     view.imgname = view.allimg[random(#view.allimg)]
     view.img = lg.newImage(view.imgname)
+    
     local sep = string.find(view.imgname,'-')
     if sep then view.imgname = 'Sommitelma '..string.sub(view.imgname,sep+1,#view.imgname-4)
     else view.imgname = 'Sommitelma ??'
