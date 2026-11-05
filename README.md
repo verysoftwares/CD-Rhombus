@@ -23,5 +23,10 @@ Now that you have a custom brush, you can try rotating it in 60 degree increment
 [P] = cycle palette  
 [G] = toggle grid on/off  
 [C] = clear grid of pieces  
+[F11] = toggle fullscreen  
 [H] = animate history of grid  
 [Delete] = delete active brush  
+
+# View screenshots
+
+Press [Tab] to display a random screenshot from the 'document' folder. Feel free to add your screenshots there. [Shift+Tab] returns back to the drawing board.
