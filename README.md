@@ -24,6 +24,7 @@ Now that you have a custom brush, you can try rotating it in 60 degree increment
 [G] = toggle grid visible/hidden  
 [C] = clear grid of pieces  
 [F11] = toggle fullscreen  
+[B] = print brush code for shapes.lua  
 [H] = animate history of grid  
 [Delete] = delete active brush  
 
